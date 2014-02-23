@@ -5,8 +5,8 @@ SCRIPTS = $(sort $(shell find . -type f -name 'euler*.*'))
 all:
 
 
-.PHONY: test test-coffee test-js test-py
-test: test-coffee test-js test-py
+.PHONY: test test-coffee test-js test-pl test-py
+test: test-coffee test-js test-pl test-py
 	@echo
 
 test-coffee:
@@ -20,6 +20,12 @@ test-js:
 	@echo Testing JavaScript...
 	@echo
 	@$(foreach file,$(filter %.js,$(SCRIPTS)),printf '  %s: ' $(file); node $(file);)
+
+test-pl:
+	@echo
+	@echo Testing Perl...
+	@echo
+	@$(foreach file,$(filter %.pl,$(SCRIPTS)),printf '  %s: ' $(file); perl $(file);)
 
 test-py:
 	@echo
